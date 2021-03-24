@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunset.grass.dao.TestDao">
+
+    <select id="queryUserMsg" parameterType="String" resultType="User">
+        select * from user where id=#{id}
+    </select>
+
+    <select id="queryUserMsgs" resultType="User">
+    select * from user
+    </select>
+    <insert id="insertUserInfo" parameterType="User">
+        insert into user(id,name,password,description)
+        values (
+        #{id,jdbcType=VARCHAR},
+        #{name,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR}
+        )
+    </insert>
+
+</mapper>
