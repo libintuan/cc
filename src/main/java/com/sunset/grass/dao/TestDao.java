@@ -10,5 +10,6 @@ public interface TestDao {
     User queryUserMsg(String id);
     List<User> queryUserMsgs();
     int insertUserInfo(User user);
+    int updateUserInfo(User user);
 
 }

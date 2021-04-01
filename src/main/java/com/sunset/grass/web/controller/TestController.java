@@ -5,7 +5,6 @@ import com.sunset.grass.entity.User;
 import com.sunset.grass.service.TestService;
 import com.sunset.grass.web.form.test.TestForm;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,21 +20,27 @@ public class TestController {
     private TestService testService;
 
     @ApiOperation(value = "查询mysql密码",notes = "通过ID查询对应用户名及密码")
-//    @ApiImplicitParam(name = "id", value = "用户ID",paramType = "form")
-    @RequestMapping(value = "/grass.test",method = RequestMethod.POST)
+    @RequestMapping(value = "/grass.test",method = RequestMethod.GET)
     public User test(TestForm form){
         return testService.testDemo(form.getId());
     }
 
+    @ApiOperation(value = "查询所有账户密码",notes = "查询所有账户密码")
     @RequestMapping(value = "queryUserInfos",method = RequestMethod.POST)
     public List<User> queryUserInfos(){
         return testService.queryUserInfos();
     }
 
+    @ApiOperation(value = "保存新的账户密码",notes = "保存新的账户密码")
     @RequestMapping(value = "insertUserInfo",method = RequestMethod.POST)
     public String insertUserInfo(User user){
-        testService.insertUserInfo(user);
-        return "sucess";
+        return String.valueOf(testService.insertUserInfo(user));
+    }
+
+    @ApiOperation(value = "修改密码",notes = "修改密码")
+    @RequestMapping(value = "updateUserInfo",method = RequestMethod.POST)
+    public String updateUserInfo(User user){
+        return testService.modifyPassword(user);
     }
 
 

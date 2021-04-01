@@ -11,6 +11,7 @@
     <select id="queryUserMsgs" resultType="User">
     select * from user
     </select>
+
     <insert id="insertUserInfo" parameterType="User">
         insert into user(id,name,password,description)
         values (
@@ -20,5 +21,17 @@
         #{description,jdbcType=VARCHAR}
         )
     </insert>
+
+    <update id="updateUserInfo" parameterType="User">
+        update user
+        <set>
+            password=#{password,jdbcType=VARCHAR},
+            <if test="description !=null and description !=''">
+                description=#{description,jdbcType=VARCHAR},
+            </if>
+            lastPassword=#{lastPassword,jdbcType=VARCHAR}
+        </set>
+        where id=#{id}
+    </update>
 
 </mapper>

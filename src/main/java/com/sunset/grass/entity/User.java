@@ -4,8 +4,17 @@ public class User {
     private String id;
     private String name;
     private String password;
+    private String lastPassword;
     private String description;
     private String created_date;
+
+    public String getLastPassword() {
+        return lastPassword;
+    }
+
+    public void setLastPassword(String lastPassword) {
+        this.lastPassword = lastPassword;
+    }
 
     public String getDescription() {
         return description;
