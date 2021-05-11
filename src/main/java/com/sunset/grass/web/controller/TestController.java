@@ -3,6 +3,9 @@ package com.sunset.grass.web.controller;
 
 import com.sunset.grass.entity.User;
 import com.sunset.grass.service.TestService;
+import com.sunset.grass.service.excel.ExtelRead;
+import com.sunset.grass.service.excel.FtpJSch;
+import com.sunset.grass.service.excel.FtpUtil;
 import com.sunset.grass.web.form.test.TestForm;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.File;
 import java.util.List;
 
 @Api(tags = "测试类")
@@ -18,6 +22,8 @@ import java.util.List;
 public class TestController {
     @Autowired
     private TestService testService;
+    @Autowired
+    private FtpJSch ftpJSch;
 
     @ApiOperation(value = "查询mysql密码",notes = "通过ID查询对应用户名及密码")
     @RequestMapping(value = "/grass.test",method = RequestMethod.GET)
@@ -41,6 +47,16 @@ public class TestController {
     @RequestMapping(value = "updateUserInfo",method = RequestMethod.POST)
     public String updateUserInfo(User user){
         return testService.modifyPassword(user);
+    }
+
+    @ApiOperation(value = "测试escel",notes = "excel")
+    @RequestMapping(value = "testExcel",method = RequestMethod.POST)
+    public List<List<String>> testExcel(User user){
+        ExtelRead.writeExcel();
+//        ftpUtil.uploadToFtp(new File("/Users/tuantuan/IdeaProjects/grass/6666.xlsx"));
+        ftpJSch.upload("/Users/tuantuan/IdeaProjects/grass/6666.xlsx");
+        ftpJSch.download("");
+        return ExtelRead.testRead();
     }
 
 

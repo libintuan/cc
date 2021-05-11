@@ -25,6 +25,7 @@ public class TestServiceImpl extends AbstractCommonService implements TestServic
     @SysLog("所有密码查询")
     @Override
     public List<User> queryUserInfos() {
+
         return testDao.queryUserMsgs();
     }
 
