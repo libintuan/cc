@@ -10,6 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 @Service
 public class TestServiceImpl extends AbstractCommonService implements TestService{
@@ -61,4 +66,5 @@ public class TestServiceImpl extends AbstractCommonService implements TestServic
             throw new RuntimeException("入参检验失败，请重新提单");
         }
     }
+
 }

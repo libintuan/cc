@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <contextName>community</contextName>
-    <property name="LOG_PATH" value="/Users/tuantuan/Desktop/log"/>
+    <!--<property name="LOG_PATH" value="/Users/tuantuan/Desktop/log"/>-->
+    <property name="LOG_PATH" value="/usr/local/project/log"/>
     <!--<property name="LOG_PATH" value="/usr/tomcat/apache-tomcat-8.5.59/work/logs"/>-->
-    <property name="APPDIR" value="community"/>
+    <property name="APPDIR" value="grass"/>
     <property name="APPNAME" value="grass" />
 
     <!-- error file -->

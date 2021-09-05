@@ -8,6 +8,14 @@ public class User {
     private String description;
     private String created_date;
 
+    public User(){
+    }
+
+    public User(String name,String password){
+        this.name=name;
+        this.password=password;
+    }
+
     public String getLastPassword() {
         return lastPassword;
     }
