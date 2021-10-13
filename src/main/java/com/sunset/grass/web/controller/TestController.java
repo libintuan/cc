@@ -1,29 +1,28 @@
 package com.sunset.grass.web.controller;
 
 
-import com.sunset.grass.GrassApplication;
 import com.sunset.grass.entity.User;
 import com.sunset.grass.service.TestService;
-import com.sunset.grass.service.excel.ExtelRead;
 import com.sunset.grass.service.excel.FtpJSch;
-import com.sunset.grass.service.excel.FtpUtil;
 import com.sunset.grass.util.LoggerHelper;
+import com.sunset.grass.web.form.test.BaseForm;
 import com.sunset.grass.web.form.test.TestForm;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 @Api(tags = "测试类")
 @RestController
@@ -41,7 +40,7 @@ public class TestController {
 
     @ApiOperation(value = "查询所有账户密码",notes = "查询所有账户密码")
     @RequestMapping(value = "queryUserInfos",method = RequestMethod.POST)
-    public List<User> queryUserInfos(){
+    public List<User> queryUserInfos(BaseForm form){
         return testService.queryUserInfos();
     }
 
@@ -71,7 +70,7 @@ public class TestController {
         return null;
     }
 
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         /*List<String> list=new ArrayList<>();
         list.add("aaa");
         list.add("bbbb");
@@ -113,6 +112,18 @@ public class TestController {
         /*ftpJSch.upload("/Users/tuantuan/IdeaProjects/grass/6666.xlsx");
         ftpJSch.download("");
         return ExtelRead.testRead();*/
+    }
+
+    public static void main(String[] args) {
+        DecimalFormat decimalFormat=new DecimalFormat("0.00");
+        String aa="1.11";
+        String bb="1.8999999";
+        System.out.println(decimalFormat.format(Double.valueOf(aa)));
+        System.out.println(decimalFormat.format(Double.valueOf(bb)));
+        ReentrantLock lock=new ReentrantLock();
+        lock.lock();
+        lock.tryLock();
+        lock.isFair();
     }
 
 
