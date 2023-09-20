@@ -1,9 +1,12 @@
 package com.sunset.grass.web.controller;
 
 
+import com.sunset.grass.entity.StrategyEnum;
 import com.sunset.grass.entity.User;
 import com.sunset.grass.service.TestService;
 import com.sunset.grass.service.excel.FtpJSch;
+import com.sunset.grass.service.strategy.PayFactory;
+import com.sunset.grass.service.strategy.PayStrategy;
 import com.sunset.grass.util.LoggerHelper;
 import com.sunset.grass.web.form.test.BaseForm;
 import com.sunset.grass.web.form.test.TestForm;
@@ -31,6 +34,8 @@ public class TestController {
     private TestService testService;
     @Autowired
     private FtpJSch ftpJSch;
+    @Autowired
+    PayFactory payFactory;
 
     @ApiOperation(value = "查询mysql密码",notes = "通过ID查询对应用户名及密码")
     @RequestMapping(value = "/grass.test",method = RequestMethod.GET)
@@ -62,6 +67,20 @@ public class TestController {
         List<String> list=new ArrayList<>();
         Collection<String> cc= Collections.unmodifiableCollection(list);
         cc.add("bb");
+//        ExtelRead.writeExcel();
+//        ftpUtil.uploadToFtp(new File("/Users/tuantuan/IdeaProjects/grass/6666.xlsx"));
+        /*ftpJSch.upload("/Users/tuantuan/IdeaProjects/grass/6666.xlsx");
+        ftpJSch.download("");
+        return ExtelRead.testRead();*/
+        return null;
+    }
+
+    @ApiOperation(value = "测试策略模式",notes = "策略模式")
+    @RequestMapping(value = "testStrategy",method = RequestMethod.POST)
+    public List<List<String>> testStrategy(String type){
+
+        PayStrategy payStrategy=payFactory.getPayStrategy(type);
+        payStrategy.toPayhtml();
 //        ExtelRead.writeExcel();
 //        ftpUtil.uploadToFtp(new File("/Users/tuantuan/IdeaProjects/grass/6666.xlsx"));
         /*ftpJSch.upload("/Users/tuantuan/IdeaProjects/grass/6666.xlsx");
@@ -114,7 +133,7 @@ public class TestController {
         return ExtelRead.testRead();*/
     }
 
-    public static void main(String[] args) {
+    public static void main11(String[] args) {
         DecimalFormat decimalFormat=new DecimalFormat("0.00");
         String aa="1.11";
         String bb="1.8999999";
@@ -125,7 +144,5 @@ public class TestController {
         lock.tryLock();
         lock.isFair();
     }
-
-
 
 }

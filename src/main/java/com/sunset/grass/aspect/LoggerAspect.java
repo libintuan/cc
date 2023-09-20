@@ -10,6 +10,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -35,6 +36,7 @@ public class LoggerAspect {
     public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
         long beginTime=System.currentTimeMillis();
         System.out.println("bbbbbbbbbbbbbbbbbbbbb");
+        System.out.println("设置的线程号为：---------------------："+MDC.get("T"));
         Object result=proceedingJoinPoint.proceed();
         long costTime=System.currentTimeMillis()-beginTime;
         try{

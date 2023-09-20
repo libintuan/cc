@@ -2,10 +2,12 @@
 <configuration>
     <contextName>community</contextName>
     <!--<property name="LOG_PATH" value="/Users/tuantuan/Desktop/log"/>-->
-    <property name="LOG_PATH" value="/usr/local/project/log"/>
+<!--    <property name="LOG_PATH" value="/usr/local/project/log"/>-->
+    <property name="LOG_PATH" value="F:\\logs"/>
     <!--<property name="LOG_PATH" value="/usr/tomcat/apache-tomcat-8.5.59/work/logs"/>-->
     <property name="APPDIR" value="grass"/>
     <property name="APPNAME" value="grass" />
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} T=[%X{T}] [%t] %-5level %logger{36} - %msg%n" />
 
     <!-- error file -->
     <!--<appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -53,9 +55,9 @@
 
     <!-- info file -->
     <appender name="FILE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_PATH}/${APPDIR}/${APPNAME}info/log_info.log</file>
+        <file>${LOG_PATH}\\${APPDIR}\\${APPNAME}info\\log_info.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_PATH}/${APPDIR}/${APPNAME}info/log-info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}\\${APPDIR}\\${APPNAME}info\\log-info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>5MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -63,7 +65,7 @@
         </rollingPolicy>
         <append>true</append>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%d %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+            <pattern>${LOG_PATTERN}</pattern>
             <charset>utf-8</charset>
         </encoder>
         <!--<filter class="ch.qos.logback.classic.filter.LevelFilter">
