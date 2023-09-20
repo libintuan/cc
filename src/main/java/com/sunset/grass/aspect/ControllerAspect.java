@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.lang.reflect.Method;
 
 @Aspect
-@Order(1)
 //@Component
+@Order(1)
 public class ControllerAspect {
     private final Logger logger= LoggerFactory.getLogger(this.getClass());
 

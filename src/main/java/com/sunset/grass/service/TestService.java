@@ -9,4 +9,7 @@ public interface TestService {
     List<User> queryUserInfos();
     int insertUserInfo(User user);
     String modifyPassword(User user);
+    String testSentiel();
+
+    String testJTA();
 }
